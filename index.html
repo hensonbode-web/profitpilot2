@@ -216,7 +216,7 @@ GROWTH OPPORTUNITY:
     });
 
     const data = await response.json();
-    const text = data.content?.map(b => b.text || '').join('') || '';
+   const text = data.content ? data.content.map(b => b.text || '').join('') : (data.error ? data.error.message : 'No response');
 
     function extract(label, next) {
       const m = text.match(new RegExp(label + ':?\\s*([\\s\\S]*?)(?=' + next + ':|$)', 'i'));
